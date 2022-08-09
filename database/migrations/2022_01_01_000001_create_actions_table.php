@@ -14,9 +14,9 @@ return new class extends Migration {
     {
         Schema::create('actions', function(Blueprint $table) {
             $table->id();
-
-            // TODO: Create actions table
-
+            $table->string('action');
+            $table->nullableMorphs('actionable');
+            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('set null');
             $table->timestamps();
         });
     }
