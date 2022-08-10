@@ -44,7 +44,7 @@ class ActivityListener
     {
         return ! in_array(
             get_class($this->event->model),
-            config("activity-package.excluded_models")
+            config("activity-package.excluded_models", true)
         );
     }
 
