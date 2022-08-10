@@ -71,13 +71,13 @@ You may write the answers in this README as part of the submission. (If you want
 to implement the answer to some of these questions in the code then feel free,
 with some comments referencing the question and giving some context).
 
-1. What aspects of this package could be customised with a config file
-2. How would you go about storing more information about the event (i.e. what fields were updated, from what to what)?
-3. How would you increase the security of the package, ensuring only authorised performers can see the activity for an item?
-4. If a performer or item is deleted from the system, what would their actions say in their summary? How could this be improved?
-5. Suppose the developer wants to record other types of actions that are more specific, i.e. "Task was completed by ____" how could that be implemented?
-6. What should be considered when developing the package to scale?
-7. What should happen when an event is triggered but there is no authenticated user, e.g. in a queued job?
+1. What aspects of this package could be customised with a config file (partially included in test - the translated string prefix / suffix for the action, models to exclude, events to include / exclude, the default user model )
+2. How would you go about storing more information about the event (i.e. what fields were updated, from what to what)? ( use the updating model event $model->getOriginal() & $model->getAttributes() )
+3. How would you increase the security of the package, ensuring only authorised performers can see the activity for an item? ( use Policies )
+4. If a performer or item is deleted from the system, what would their actions say in their summary? How could this be improved? ( The model was deleted, user / item deleted )
+5. Suppose the developer wants to record other types of actions that are more specific, i.e. "Task was completed by ____" how could that be implemented? ( listen for custom events, update EventServiceProvider and activity-package.events_to_log )
+6. What should be considered when developing the package to scale? ( a job to clean up / archive old data  )
+7. What should happen when an event is triggered but there is no authenticated user, e.g. in a queued job? ( a condition should be added to only log where there is an authenticated user )
 
 ## Links that may be useful
 - https://laravel.com/docs/9.x/eloquent#events-using-closures
